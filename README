@@ -1,0 +1,32 @@
+README
+
+The tree.hh library for C++ provides an STL-like container class for n-ary trees. Various types of iterators are provided (post-order, pre-order, and others). Where possible the access methods are compatible with the STL or alternative algorithms are available.
+
+This implementation is revised from Kasper Peeters's implementation.(http://www.aei.mpg.de/~peekas/tree/) Compared to that, this implementation has simpler and clearer interfaces. Several new interfaces are also added.
+
+Usage:
+
+Create a tree whose node is string:
+	tree<string> tr;
+	
+Set root:
+	tr.set_root("a");//insert
+	
+Append child:
+	tree<string>::pre_order_iterator pos_b1=tr.append_child(tr.root(), "b1");
+	tree<string>::pre_order_iterator pos_c1=tr.append_child(pos_b1, "c1");
+	
+Traverse:
+
+	tree<string>::pre_order_iterator pre_iter = tr.root();
+	for(; pre_iter!=tr.end_pre_order_iterator(tr.root());++pre_iter)
+	{
+		//get depth
+		cout<<"+";
+		for(int i=0;i<tr.depth(pre_iter);i++) cout<<"+";
+		cout<<*pre_iter<<endl;
+	}	
+	
+Other features:
+
+	See tree.hh
